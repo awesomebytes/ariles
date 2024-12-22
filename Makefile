@@ -51,12 +51,13 @@ build:
 	mkdir -p ${BUILD_SUBDIR};
 	cd ${BUILD_SUBDIR}; cmake 	-C ${ROOT_DIR}/cmake/options_${OPTIONS}.cmake\
 								-DCMAKE_BUILD_TYPE=${TYPE} \
-								-DCMAKE_TOOLCHAIN_FILE=${CMAKE_DIR}/toolchain_${TC}.cmake\
+								-DCMAKE_TOOLCHAIN_FILE=${CMAKE_DIR}/toolchain_${TC}.cmake \
 								${EXTRA_CMAKE_PARAM} \
 								${ROOT_DIR};
 	cd ${BUILD_SUBDIR}; ${MAKE} ${MAKE_FLAGS} ${TARGETS}
 
-build-tests: build
+build-tests:
+	${MAKE} build EXTRA_CMAKE_PARAM="-DARILES_BUILD_REGRESSION_TESTS=ON"
 	cd ${BUILD_SUBDIR}; env ${TEST_ENV} ctest ${ARGS}
 #	cd ${BUILD_SUBDIR}; ${MAKE} ${MAKE_FLAGS} test ${ARGS}
 

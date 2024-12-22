@@ -10,6 +10,7 @@
 
 #pragma once
 
+// cppcheck-suppress-file duplInheritedMember
 
 namespace ariles_tests
 {

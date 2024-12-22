@@ -12,7 +12,7 @@
 
 #include "common.h"
 
-
+// cppcheck-suppress-file duplInheritedMember
 namespace ariles2
 {
     /// @ingroup aggregate
@@ -64,7 +64,9 @@ namespace ariles2
             explicit Parameters(const bool) {};
             Parameters() {};
 
-            void get() {};
+            void get()
+            {
+            }
         };
 
         template <class t_Visitor, class... t_Visitors>
